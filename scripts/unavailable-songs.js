@@ -6,8 +6,8 @@ if(typeof settings === 'undefined'){
     
     settings = {
         logToConsole: true, //Will log to console
-        logToChat: false,   //Will not log to chat
-        logToFile: false,   //Will not output log to file
+        logToChat: true,    //Will log to chat
+        logToFile: true,    //Will output log to file
         moveToTop: true,    //Will move all songs to top of the playlist
         moveToBottom: false,//Will not move all songs to bottom of the playlist
         remove: false,      //Will not remove the songs
@@ -42,9 +42,9 @@ $.get('https://plug.dj/_/playlists', function(data){
                                 data: '{"ids":' + JSON.stringify(unavailableMove[ee]) + '}'   
                             });
                         }
-                        if(ii + 1 == aa.length && settings.logToFile) {
-                            doLogging("Unavailable song search started");
-                            download(fileText, "plug.dj unavailable songs.txt", "text/plain");
+                        if(ii + 1 == aa.length) {
+                            doLogging("Unavailable song search finished.");
+                            if(settings.logToFile) download(fileText, "plug.dj unavailable songs.txt", "text/plain");
                         }
                     }, ii * delay)
                 });
