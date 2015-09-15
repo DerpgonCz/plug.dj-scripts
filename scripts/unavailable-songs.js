@@ -44,13 +44,14 @@ $.get('https://plug.dj/_/playlists', function(data){
                         }
                         if(ii + 1 == aa.length) {
                             doLogging("Unavailable song search finished.");
-                            if(settings.logToFile) download(fileText, "plug.dj unavailable songs.txt", "text/plain");
+                            setTimeout(function(){
+                                if(settings.logToFile) download(fileText, "plug.dj unavailable songs.txt", "text/plain");
+                            }, aa.length * delay + 2000);
                         }
                     }, ii * delay)
                 });
                 if(Object.keys(unavailableMove).length == 0) {
                     doLogging("Unavailable song search finished.");
-                    if(settings.logToFile) download(fileText, "plug.dj unavailable songs.txt", "text/plain");
                 }
             }, a.length * delay)
         }
