@@ -48,9 +48,9 @@ $.get('https://plug.dj/_/playlists', function(data){
                         }
                     }, ii * delay)
                 });
-                if(Object.keys(unavailableMove).length == 0 && settings.logToFile) {
+                if(Object.keys(unavailableMove).length == 0) {
                     doLogging("Unavailable song search finished.");
-                    download(fileText, "plug.dj unavailable songs.txt", "text/plain");
+                    if(settings.logToFile) download(fileText, "plug.dj unavailable songs.txt", "text/plain");
                 }
             }, a.length * delay)
         }
