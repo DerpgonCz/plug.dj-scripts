@@ -1,5 +1,5 @@
 $.getScript('https://cdn.rawgit.com/DragonCzz/plug.dj-scripts/master/libs/download.js');
-var APIkey = 'AIzaSyDgGJ6aED-sENrI9zsEli9i4SVXTORfN5Q';
+var APIkey = 'AIzaSyCZj-wlckuJPb6EZ8qydmP84B5JuRMOFQ0';
 var unavailableMove = [], fileText = "", delay = (API.getUser().gRole >= 3 ? 100 : 3500);
 
 if(typeof settings === 'undefined'){
