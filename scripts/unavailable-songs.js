@@ -3,14 +3,31 @@ var APIkey = 'AIzaSyCZj-wlckuJPb6EZ8qydmP84B5JuRMOFQ0';
 var unavailableMove = [], fileText = "", delay = (API.getUser().gRole >= 3 ? 100 : 3500);
 
 if(typeof settings === 'undefined'){
-    
-    settings = {
-        logToConsole: true, //Will log to console
-        logToChat: true,    //Will log to chat
-        logToFile: true,    //Will output log to file
-        moveToTop: true,    //Will move all songs to top of the playlist
-        moveToBottom: false,//Will not move all songs to bottom of the playlist
-        remove: false,      //Will not remove the songs
+    if (confirm('Change the default settings ?\n'+
+    '\n'+
+    'log in console: true\n'+
+    'log in chat: true\n'+
+    'log in a file: true\n'+
+    'move songs to top: true\n'+
+    'move songs to bottom: false\n'+
+    'delete songs: false')){
+        settings = {
+            logToConsole : confirm("Log in console ?"),
+            logToChat    : confirm("Log in chat ?"),
+            logToFile    : confirm("Log in file ?"),
+            moveToTop    : confirm("Move to top ?\n\n(If both move to top and bottom are true, will move to top)"),
+            moveToBottom : confirm("Move to bottom ?"),
+            remove       : confirm("Delete unavailable songs ?")
+        };
+    } else {
+        settings = {
+            logToConsole: true, //Will log to console
+            logToChat: true,    //Will log to chat
+            logToFile: true,    //Will output log to file
+            moveToTop: true,    //Will move all songs to top of the playlist
+            moveToBottom: false,//Will not move all songs to bottom of the playlist
+            remove: false,      //Will not remove the songs
+        };
     }
 }
 
@@ -48,12 +65,12 @@ $.get('https://plug.dj/_/playlists', function(data){
                                 if(settings.logToFile) download(fileText, "plug.dj unavailable songs.txt", "text/plain");
                             }, aa.length * delay + 2000);
                         }
-                    }, ii * delay)
+                    }, ii * delay);
                 });
                 if(Object.keys(unavailableMove).length == 0) {
                     doLogging("Unavailable song search finished.");
                 }
-            }, a.length * delay)
+            }, a.length * delay);
         }
         setTimeout(function(){
             doLogging("[Playlist #" + (i + 1) + "/" + a.length + "] Checking playlist '" + e.name + "'");
