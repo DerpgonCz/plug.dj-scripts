@@ -1,5 +1,5 @@
 $.getScript('https://cdn.rawgit.com/DragonCzz/plug.dj-scripts/master/libs/download.js');
-var fileText = "", delay = (API.getUser().gRole >= 3 ? 250 : 3500);
+var fileText = "", delay = (API.getUser().gRole >= 3000 ? 250 : 3500);
 
 if(typeof settings === 'undefined'){
     
